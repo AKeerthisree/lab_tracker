@@ -1,0 +1,39 @@
+<div class="alert alert-warning" *ngIf="!startDate||!endDate">Enter valid values</div>
+<div class="container">
+    <label for="start" class="start">Start date: </label>
+    <input type="date" 
+    [ngModel]="startDate | date:'yyyy-MM-dd'"
+    (ngModelChange)="startDate = $event"
+    class="start" name="trip-start">    
+    <label for="start" class="end"> End   date: </label>
+    <input type="date" 
+    [ngModel]="endDate | date:'yyyy-MM-dd'"
+    (ngModelChange)="endDate = $event"
+    class="start" name="trip-start"
+    class="end" name="trip-start">    
+</div>
+<div *ngIf="results" class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Patient Id</th>
+                <th> Age</th>
+                <th> Date</th>
+                <th>Email</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let result of results">
+                <td>{{result.patient_id}}</td>
+                <td>{{result.age}}</td>
+                <td>{{result.currDate | date:'yyyy-MM-dd'}}</td>
+                <td>{{result.email}}</td>
+                <td>{{result.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <button (click)="search()"class="btn btn-success">Search</button>
+</div>

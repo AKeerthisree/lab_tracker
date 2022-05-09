@@ -15,7 +15,9 @@ export class AdminComponent implements OnInit {
   empObj : Employee = new Employee();
   empList : Employee[] = []
   searchText : string;
-  constructor(private formBuilder: FormBuilder,private empService: EmployeeService,
+  constructor(
+    private formBuilder: FormBuilder,
+    private empService: EmployeeService,
     private router:Router) { }
 
   ngOnInit(): void {
@@ -89,7 +91,7 @@ deleteEmployee(emp : Employee) {
 
 }
 logout(){
-  this.router.navigateByUrl('/login')
+  this.router.navigateByUrl('')
 }
 
 

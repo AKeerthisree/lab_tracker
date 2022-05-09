@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>ADMIN</mat-toolbar>
+    <mat-divider></mat-divider>
+    <br>
+    <mat-divider></mat-divider>
+    <mat-nav-list>
+      <!-- <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/nav/'+item"> {{item | titlecase}} </a> -->
+      <a mat-list-item routerLink="/adminDashboard/adminPatients" class="menu-button">
+        <span>View Patients</span> </a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/adminDashboard/adminEmployees" class="menu-button">View Employees</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/adminDashboard/adminSamples"class="menu-button">View Samples</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/adminDashboard/search"class="menu-button">Search</a>
+      <mat-divider></mat-divider>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="mat-toolbar" color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>IIITB_CMS</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

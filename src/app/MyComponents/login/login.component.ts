@@ -30,19 +30,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     
     
-    // if(this.userID == "admin" && this.password=="admin"){
-    //   console.log("Login Success");
-    //   this.router.navigateByUrl('/admin');
-
-    // }
-    // else if(this.userID=="tech1" && this.password=="tech1"){
-    //   console.log("Login Success");
-    //   this.router.navigateByUrl('/receivingStation');
-    // }
-    // else if(this.userID=="tech2" && this.password=="tech2"){
-    //   console.log("Login Success");
-    //   this.router.navigateByUrl('/grossingStation');
-    // }
+    
     console.log(JSON.stringify(this.form));
       let resp=this.loginService.employeeLogin(this.form);
       resp.subscribe((data)=>{
@@ -50,7 +38,7 @@ export class LoginComponent implements OnInit {
         console.log(this.message)
         if(this.message!=null){
           if(this.form.role == "Admin")
-            this.router.navigateByUrl('/admin')
+            this.router.navigateByUrl('/adminDashboard/adminEmployees')
           else if(this.form.role == "Receptionist")
             this.router.navigateByUrl('/receivingStation')
           else if(this.form.role == "Technician")

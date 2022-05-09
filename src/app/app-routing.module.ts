@@ -15,8 +15,26 @@ import { PendingPatientsComponent } from './MyComponents/pending-patients/pendin
 import { PendingPatientsDispatchComponent } from './MyComponents/pending-patients-dispatch/pending-patients-dispatch.component';
 import { DoctorIndexComponent } from './MyComponents/doctor-index/doctor-index.component';
 import { AddPatientsHISComponent } from './MyComponents/add-patients-his/add-patients-his.component';
+import { NavComponent } from './MyComponents/nav/nav.component';
+import { AdminPatientsComponent } from './MyComponents/admin-patients/admin-patients.component';
+import { AdminEmployeesComponent } from './MyComponents/admin-employees/admin-employees.component';
+import { AdminSamplesComponent } from './MyComponents/admin-samples/admin-samples.component';
+
+import { AddEmployeeComponent } from './MyComponents/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './MyComponents/edit-employee/edit-employee.component';
+
+import { AddPatientComponent } from './MyComponents/add-patient/add-patient.component';
+import { EditPatientComponent } from './MyComponents/edit-patient/edit-patient.component';
+
+import { EditSampleComponent } from './MyComponents/edit-sample/edit-sample.component';
+
+import { SearchSampleComponent } from './MyComponents/search-sample/search-sample.component';
+
+import { HomeComponent } from './MyComponents/home/home.component';
+
 const routes: Routes = [
   //{path:'',component:LoginComponent},
+  {path:'',component:HomeComponent},
   {path:'receivingStation',component:ReceivingStationComponent},
   {path:'requests',component:RequestsHISComponent},
   {path:'sample',component:SampleComponent},
@@ -31,7 +49,21 @@ const routes: Routes = [
   {path:"pendingPatients",component:PendingPatientsComponent},
   {path:"pendingDispatchPatients",component:PendingPatientsDispatchComponent},
   {path:"doctorIndex",component:DoctorIndexComponent},
-  {path:"addPatientHIS",component:AddPatientsHISComponent}
+  {path:"addPatientHIS",component:AddPatientsHISComponent},
+  {path:"adminDashboard",component:NavComponent,
+  children:[
+    {path:"adminPatients",component:AdminPatientsComponent},
+    {path:"adminEmployees",component:AdminEmployeesComponent},
+    {path:"adminSamples",component:AdminSamplesComponent},
+    {path:"addEmployee",component:AddEmployeeComponent},
+    {path:'editEmployee/:ID',component:EditEmployeeComponent},
+    {path:"addPatient",component:AddPatientComponent},
+    {path:'editPatient/:ID',component:EditPatientComponent},
+    {path:'editSample/:ID',component:EditSampleComponent},
+    {path:'search',component:SearchSampleComponent},
+
+  ]
+  }
 ];
 
 @NgModule({

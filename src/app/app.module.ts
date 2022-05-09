@@ -50,6 +50,21 @@ import { PendingPatientsDispatchComponent } from './MyComponents/pending-patient
 import {MatIconModule} from '@angular/material/icon';
 import { DoctorIndexComponent } from './MyComponents/doctor-index/doctor-index.component';
 import { AddPatientsHISComponent } from './MyComponents/add-patients-his/add-patients-his.component';
+import { NavComponent } from './MyComponents/nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { AdminPatientsComponent } from './MyComponents/admin-patients/admin-patients.component';
+import { AdminEmployeesComponent } from './MyComponents/admin-employees/admin-employees.component';
+import { AdminSamplesComponent } from './MyComponents/admin-samples/admin-samples.component';
+import { AddEmployeeComponent } from './MyComponents/add-employee/add-employee.component';
+import { EditEmployeeComponent } from './MyComponents/edit-employee/edit-employee.component';
+import { AddPatientComponent } from './MyComponents/add-patient/add-patient.component';
+import { EditPatientComponent } from './MyComponents/edit-patient/edit-patient.component';
+import { EditSampleComponent } from './MyComponents/edit-sample/edit-sample.component';
+import { SearchSampleComponent } from './MyComponents/search-sample/search-sample.component';
+import { HomeComponent } from './MyComponents/home/home.component';
+
 //import { MatDialogActions } from '@angular/material/dialog';
 @NgModule({
   declarations: [
@@ -70,8 +85,18 @@ import { AddPatientsHISComponent } from './MyComponents/add-patients-his/add-pat
     PendingPatientsDispatchComponent,
     DoctorIndexComponent,
     AddPatientsHISComponent,
-    //AdminComponent
-
+    NavComponent,
+    AdminPatientsComponent,
+    AdminEmployeesComponent,
+    AdminSamplesComponent,
+    AddEmployeeComponent,
+    EditEmployeeComponent,
+    AddPatientComponent,
+    EditPatientComponent,
+    EditSampleComponent,
+    SearchSampleComponent,
+    HomeComponent,
+  
   ],
   imports: [
     BrowserModule,
@@ -102,6 +127,9 @@ import { AddPatientsHISComponent } from './MyComponents/add-patients-his/add-pat
     ReactiveFormsModule,
     MatTabsModule,
     MatIconModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule,
     
 
   ],

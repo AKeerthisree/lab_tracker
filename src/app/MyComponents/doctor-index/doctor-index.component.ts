@@ -31,6 +31,6 @@ export class DoctorIndexComponent implements OnInit {
   }
 
   logout(){
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('')
   }
 }

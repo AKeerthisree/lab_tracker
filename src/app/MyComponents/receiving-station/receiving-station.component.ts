@@ -75,10 +75,6 @@ export class ReceivingStationComponent implements OnInit {
         this.sd.sample_id=this.pdd.patient_id;
       },
       () => {
-        //here we check if the sample id belongs to the correct reg type or not
-        // console.log(this.pdd.uhid.charCodeAt(0));
-        // console.log("is digit"+ (this.pdd.uhid.charCodeAt(0)>=48 && this.pdd.uhid.charCodeAt(0)<=57));
-        
         
       }
     )
@@ -131,8 +127,11 @@ export class ReceivingStationComponent implements OnInit {
         console.log(data);
         this.message=data});
       console.log(this.message);
-     
-    //}
+      if(resp)
+        this.openDialog(true);
+      else
+        this.openDialog(false);
+      
 
 
   }
@@ -181,7 +180,7 @@ export class ReceivingStationComponent implements OnInit {
   }
 
   logout(){
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('')
   }
 }
 // function getSampleExist(sample_id: string) {
@@ -199,6 +198,7 @@ export class DialogElementsExampleDialog {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
   
 }
@@ -214,5 +214,6 @@ export class DialogUnsuccess {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
 }

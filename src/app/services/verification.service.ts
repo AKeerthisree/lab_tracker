@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { blockDetails } from '../MyComponents/details/blockDetails';
 import { sampleDetails } from '../MyComponents/details/sampleDetails';
 
 @Injectable({
@@ -22,6 +23,9 @@ export class VerificationService {
   }
   getPatient_sampleID(sample_id){
     return this.httpClient.get(this.serverUrl+'getPatient_sampleID/'+sample_id);
+  }
+  getBlockByID(block_id):Observable<blockDetails>{
+    return this.httpClient.get<blockDetails>(this.serverUrl+'block/getOneBlock/'+block_id);
   }
   getOneSample(sample_id){
     return this.httpClient.get(this.serverUrl+'getOneSample/'+sample_id);
@@ -46,6 +50,9 @@ export class VerificationService {
   }
   getPendingSamples(stationNo){
     return this.httpClient.get(this.serverUrl+'getPendingSamples/'+stationNo);
+  }
+  getPendingBlocks(stationNo){
+    return this.httpClient.get(this.serverUrl+'block/getPendingBlocks/'+stationNo);
   }
   updateSample(sample){
     return this.httpClient.put(this.serverUrl+'updateSample/',sample);

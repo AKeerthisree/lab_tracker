@@ -9,34 +9,32 @@ import { Employee } from '../MyComponents/details/Employee';
 })
 export class EmployeeService {
 
-  addEmpURL : string;
-  getEmpURL : string;
-  updateEmpUrl : string;
-  deleteEmpUrl : string;
 
-  constructor(private http : HttpClient) {
+  serverUrl = 'http://localhost:8020/';
+  options = {
+    responseType: 'json',
+  };
+  constructor(private httpClient: HttpClient) { }
 
-    this.addEmpURL = 'http://localhost:8020/emp/addEmployee';
-    this.getEmpURL = 'http://localhost:8020/emp/getAll';
-    this.updateEmpUrl = 'http://localhost:8020/emp/updateEmployee';
-    this.deleteEmpUrl = 'http://localhost:8020/emp/deleteEmployeeById';
-
-   }
 
    addEmployee(emp : Employee): Observable<Employee> {
-     return this.http.post<Employee>(this.addEmpURL,emp);
+     return this.httpClient.post<Employee>(this.serverUrl+'emp/addEmployee',emp);
    }
 
    getAllEmployee(): Observable<Employee[]>{
-     return this.http.get<Employee[]>(this.getEmpURL);
+     return this.httpClient.get<Employee[]>(this.serverUrl+'emp/getAll');
    }
 
    updateEmployee(emp :Employee) : Observable<Employee>{
-     return this.http.put<Employee>(this.updateEmpUrl, emp);
+     return this.httpClient.put<Employee>(this.serverUrl+'emp/updateEmployee', emp);
    }
 
    deleteEmployee(emp : Employee) : Observable<Employee> {
-     return this.http.delete<Employee>(this.deleteEmpUrl+'/'+emp.id);
+     return this.httpClient.delete<Employee>(this.serverUrl+'emp/deleteEmployeeById/'+emp.id);
    }
+
+   getEmployee(id):Observable<Employee>{
+    return this.httpClient.get<Employee>(this.serverUrl+'emp/getEmployeeByID/'+id);
+  }
  
 }

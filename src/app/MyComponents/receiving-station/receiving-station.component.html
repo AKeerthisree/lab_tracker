@@ -38,7 +38,7 @@
           <tr>
             <td>
               <mat-form-field appearance="fill">
-                <mat-label>Sample ID</mat-label>
+                <mat-label>Patient ID</mat-label>
                 <mat-select #upperSampleId="ngModel"  name="upperSampleId" ngDefaultControl [(ngModel)]="uSampleId">
                   <mat-option *ngFor="let patient of patientVals"  [value]="patient.patient_id">{{patient.patient_id}}
                   </mat-option>

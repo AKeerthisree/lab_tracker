@@ -1,0 +1,55 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary">EDIT SAMPLE DETAILS</mat-toolbar>
+
+                <form [formGroup]="sampleDetail">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">ID </label>
+                        <input type="text" formControlName="sample_id" class="form-control" id="patinet_id" [(ngModel)]="sample.sample_id"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Patient name </label>
+                        <input type="text" formControlName="pd.name" class="form-control" id="name" [(ngModel)]="sample.pd."
+                            aria-describedby="emailHelp">
+                    </div> -->
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Remarks </label>
+                        <input type="email" formControlName="remarks" class="form-control" id="remarks" [(ngModel)]="sample.remarks"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Specimen </label>
+                        <input type="text" formControlName="specimen" class="form-control" id="specimen" [(ngModel)]="sample.specimen"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Test </label>
+                        <input type="text" formControlName="test" class="form-control" id="test" [(ngModel)]="sample.test"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Fixative </label>
+                        <input type="text" formControlName="fixative" class="form-control" id="fixative" [(ngModel)]="sample.fixative"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Quantity </label>
+                        <input type="text" formControlName="quantity" class="form-control" id="quantity" [(ngModel)]="sample.quantity"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Last Updated Station </label>
+                        <input type="text" formControlName="lastUpdatedStation" class="form-control" id="lastUpdatedStation" [(ngModel)]="sample.lastUpdatedStation"
+                            aria-describedby="emailHelp">
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="button" class="btn btn-outline-success" (click)="updateSample()"
+                            data-bs-dismiss="modal">Update </button>
+                    </div>
+                </form>
+
+    </mat-card>
+</div>

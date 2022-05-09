@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { sampleDetails } from '../MyComponents/details/sampleDetails';
 import { patientDetails } from '../MyComponents/details/patientDetails';
+import { blockDetails } from '../MyComponents/details/blockDetails';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,9 @@ export class DispatchService {
   constructor(private httpClient: HttpClient) { }
   getPatientByID(id){
     return this.httpClient.get(this.serverUrl + 'getOne/'+id);
+  }
+  getBlockByID(block_id):Observable<blockDetails>{
+    return this.httpClient.get<blockDetails>(this.serverUrl+'block/getOneBlock/'+block_id);
   }
     getPatient_sampleID(sample_id):Observable<patientDetails>{
       return this.httpClient.get<patientDetails>(this.serverUrl+'getPatient_sampleID/'+sample_id);
@@ -30,6 +34,9 @@ export class DispatchService {
     }
     getPendingSamples(station):Observable<sampleDetails[]>{
       return this.httpClient.get<sampleDetails[]>(this.serverUrl+'getPendingSamples/'+station);
+    }
+    getPendingBlocks(stationNo):Observable<blockDetails[]>{
+      return this.httpClient.get<blockDetails[]>(this.serverUrl+'block/getPendingBlocks/'+stationNo);
     }
     getBlkDetailsOfPatient(patient_id){
       return this.httpClient.get(this.serverUrl+'block/getBlkDetailsOfPatient/'+patient_id);

@@ -1,0 +1,60 @@
+<body>
+    <div class="container-fluid" style="align-self: center;">
+    
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Sample Management System</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
+            </div>
+            
+            <div>
+                <button type="submit"  class="btn btn-primary" style="margin-right: 3%;" (click)="getAllSamples()">Show All</button>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" (click)="logout()">LOGOUT</button>
+          </div>
+        </nav>
+        <div class="form-group">
+            <input type="text" class="form-control search-field" placeholder="Search Here"
+            [(ngModel)]="searchText">
+        </div>
+    
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Sample ID</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Remarks</th>
+                <th scope="col">Specimen</th>
+                <th scope="col">Test</th>
+                <th scope="col">Fixative</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Last Updated Station</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sample of sampleList | searchfilter: searchText">
+                <td>{{sample.sample_id}}</td>
+                <td>{{sample.pd.name}}</td>
+                <td>{{sample.remarks}}</td>
+                <td>{{sample.specimen}}</td>
+                <td>{{sample.test}}</td>
+                <td>{{sample.fixative}}</td>
+                <td>{{sample.quantity}}</td>
+                <td>{{sample.lastUpdatedStation}}</td>
+                <td>
+                    <button type="submit"  class="btn btn-primary" (click)="editSample(sample)">EDIT</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="deleteSample(sample)">Delete</button>
+                </td>
+    
+            </tr>
+    
+        </tbody>
+    </table>
+    </div>
+</body>

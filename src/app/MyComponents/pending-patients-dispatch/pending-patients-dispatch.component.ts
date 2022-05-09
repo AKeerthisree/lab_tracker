@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DispatchService } from 'src/app/services/dispatch.service';
+import { blockDetails } from '../details/blockDetails';
 import { sampleDetails } from '../details/sampleDetails';
 
 @Component({
@@ -10,14 +11,15 @@ import { sampleDetails } from '../details/sampleDetails';
 })
 export class PendingPatientsDispatchComponent implements OnInit {
 
-  pndng_samples:sampleDetails[]=[];
+  pndng_blocks:blockDetails[]=[];
+  
   constructor(
     private router:Router,
     private dispatchService: DispatchService,
   ) { 
-    this.dispatchService.getPendingSamples(4).subscribe(res=>{
-      this.pndng_samples = res;
-      console.log(this.pndng_samples);
+    this.dispatchService.getPendingBlocks(4).subscribe(res=>{
+      this.pndng_blocks = res;
+      console.log(this.pndng_blocks);
   },err=>{
     console.log("error while fetching data.")
   });

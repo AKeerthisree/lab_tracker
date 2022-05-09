@@ -27,15 +27,17 @@ export class VerificationComponent implements OnInit {
   newForm=true;
   isPddReadOnly="true";
   sampleForm=true;
-  sample;
+  sample:sampleDetails=new sampleDetails();
   obsrvtns;
   blk;
   blkDetails;
   sampleDetails;
   message;
   messageReport;
-  sampleID;
-  sD:sampleDetails=new sampleDetails();
+  blockID;
+  bD:blockDetails=new blockDetails();
+
+  
   dialogMsg={
     "title":"",
     "content":"",
@@ -45,10 +47,7 @@ export class VerificationComponent implements OnInit {
     private router:Router,
     private verificationService: VerificationService,
     public dialog: MatDialog
-  ) { 
-      //this.pdd=new patientDetails("","","",0,"","",false);
-
-      
+  ) {      
   }
 
   ngOnInit(): void {
@@ -56,91 +55,90 @@ export class VerificationComponent implements OnInit {
   autofill(){
     this.sampleForm=true;
     this.newForm=false;
-  //  console.log(this.pdd);
 
-    this.verificationService.getSampleByID(this.sampleID).subscribe(
+
+    this.verificationService.getBlockByID(this.blockID).subscribe(
       (data)=>{
         console.log(data);
-        this.sD=data;
+        this.bD=data;
+        this.sample=this.bD.sd;
+      console.log(this.sample);
       },
       ()=>{
 
       }
     )
 
-    // this.verificationService.getPatient_sampleID(this.uSampleId).subscribe(
-    //   (data) => {
+    
+
+    //this.generateBlkReport();
+    //this.generateSampleReport();
+    // this.verificationService.getOneSample(this.uSampleId).subscribe(
+    //   (data)=>{
     //     console.log(data);
-    //     this.pdd = data;
-        
-    //   },
-    //   () => {
-    //     //here we check if the sample id belongs to the correct reg type or not
-    //     // console.log(this.pdd.uhid.charCodeAt(0));
-    //     // console.log("is digit"+ (this.pdd.uhid.charCodeAt(0)>=48 && this.pdd.uhid.charCodeAt(0)<=57));
-        
-        
+    //     this.sample=data;
     //   }
     // )
-    this.generateBlkReport();
-    //this.generateSampleReport();
-    this.verificationService.getOneSample(this.uSampleId).subscribe(
-      (data)=>{
-        console.log(data);
-        this.sample=data;
-      }
-    )
   }
 
-
   saveObs(){
-    console.log(this.obsrvtns);
-    this.sD.remarks=this.obsrvtns;
-    this.sD.lastUpdatedStation=4;
-    let resp=this.verificationService.insertRemarksSample(this.sD);
-      resp.subscribe((data)=>{
-        console.log(data);
-        this.messageReport=data});
+    this.bD.last_updated_station=4;
+    let resp=this.verificationService.updateBlock(this.bD).subscribe(
+      (data)=>{
+        console.log(data)
+      },
+      (err)=>{
+        console.log("Error");
+      }
 
-    // for(let i=0;i<this.sampleDetails.length;i++){
-    //   this.sampleDetails[i].lastUpdatedStation=4;
-    //   let resp=this.verificationService.updateSample(this.sampleDetails[i]);
-    //   resp.subscribe((data)=>{
-    //     console.log(data);
-    //     this.message=data});
-    // }
-
-    for(let i=0;i<this.blkDetails.length;i++){
-      this.blkDetails[i].last_updated_station=4;
-      let resp=this.verificationService.updateBlock(this.blkDetails[i]);
-      resp.subscribe((data)=>{
-        console.log(data);
-        this.message=data});
-
-    }
+    )
     if(resp)
       this.openDialog(true);
     else
       this.openDialog(false);
 
-      
   }
 
-  generateBlkReport(){
-    //blkReport 
-    this.verificationService.getBlkDetailsOfSample(this.sampleID).subscribe(
-      (data)=>{
-        console.log(data);
-        this.blkDetails=data;
-        console.log(this.blkDetails.length);
-        for(let i=0;i<this.blkDetails.length;i++){
-          this.blkReport+=this.blkDetails[i].remarks+" ";
-          console.log(this.blkReport);
-        }
-      }
-    )
+  // saveObs(){
+  //   console.log(this.obsrvtns);
+  //   this.sD.remarks=this.obsrvtns;
+  //   this.sD.lastUpdatedStation=4;
+  //   let resp=this.verificationService.insertRemarksSample(this.sD);
+  //     resp.subscribe((data)=>{
+  //       console.log(data);
+  //       this.messageReport=data});
+
+  //   for(let i=0;i<this.blkDetails.length;i++){
+  //     this.blkDetails[i].last_updated_station=4;
+  //     let resp=this.verificationService.updateBlock(this.blkDetails[i]);
+  //     resp.subscribe((data)=>{
+  //       console.log(data);
+  //       this.message=data});
+
+  //   }
+  //   if(resp)
+  //     this.openDialog(true);
+  //   else
+  //     this.openDialog(false);
+
+      
+  // }
+
+  // generateBlkReport(){
+  //   //blkReport 
+  //   this.verificationService.getBlkDetailsOfSample(this.sampleID).subscribe(
+  //     (data)=>{
+  //       console.log(data);
+  //       this.blkDetails=data;
+  //       console.log(this.blkDetails.length);
+  //       for(let i=0;i<this.blkDetails.length;i++){
+  //         this.blkReport+=this.blkDetails[i].remarks+" ";
+  //         console.log(this.blkReport);
+  //       }
+  //     }
+  //   )
     
-  }
+  // }
 
   generateSampleReport(){
     
@@ -178,7 +176,7 @@ export class VerificationComponent implements OnInit {
   }
   
   logout(){
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('')
   }
 }
 @Component({
@@ -192,6 +190,7 @@ export class DialogElementsExampleDialog {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
   
 }
@@ -207,5 +206,6 @@ export class DialogUnsuccess {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
 }

@@ -58,7 +58,7 @@ export class AddPatientsHISComponent implements OnInit {
     
   }
   logout(){
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('')
   }
 
 }
@@ -74,6 +74,7 @@ export class DialogElementsExampleDialog {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
   
 }
@@ -89,5 +90,6 @@ export class DialogUnsuccess {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
 }

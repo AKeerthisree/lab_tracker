@@ -7,6 +7,7 @@ export class patientDetails{
     public sex: string;
     public report:string;
     public accept:boolean;
+    public currDate:Date;
     
 
 }

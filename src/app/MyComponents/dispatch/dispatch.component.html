@@ -18,8 +18,8 @@
         <tr>
           <td>
               <mat-form-field appearance="outline"class="single">
-                  <mat-label>Sample ID</mat-label>
-                  <input  #sampleid="ngModel" [(ngModel)]="sampleID" matInput name="Sample ID" placeholder="Enter Sample Id" type="text" >
+                  <mat-label>Block ID</mat-label>
+                  <input  #sampleid="ngModel" [(ngModel)]="blockID" matInput name="Block ID" placeholder="Enter Block Id" type="text" >
               </mat-form-field>
           </td>
         </tr>
@@ -43,61 +43,52 @@
           <tr>
             <td colspan="2">
               <mat-form-field appearance="outline"class="single">
-                <mat-label>Sample ID</mat-label>
-                <input   #name="ngModel" [(ngModel)]="sD.sample_id" [disabled]="isPddReadOnly"  matInput name="sampleID" placeholder="Enter id" required type="text">
+                <mat-label>Block ID</mat-label>
+                <input   #name="ngModel" [(ngModel)]="bD.block_id" [disabled]="isPddReadOnly"  matInput name="blockID" placeholder="Enter id" required type="text">
             
               </mat-form-field>
             </td>
           </tr>
           <tr>
-            <td colspan="2">
-              <mat-form-field appearance="outline"class="single">
-                <mat-label>Patient Name</mat-label>
-                <input  #name="ngModel" [(ngModel)]="pdd.name" [disabled]="isPddReadOnly"  matInput name="PatientName"  required type="text">
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
             <td>
               <mat-form-field appearance="outline" class="single">
-                <mat-label>Specimen</mat-label>
-                <input matInput name="Specimen" [(ngModel)]="sD.specimen" [disabled]="isPddReadOnly" matInput name="Specimen"  required type="text">
+                <mat-label>Test</mat-label>
+                <input matInput name="test" [(ngModel)]="sample.test" [disabled]="isPddReadOnly" matInput name="test"  required type="text">
               </mat-form-field>
             </td>
             <td>
               <mat-form-field appearance="outline" class="single">
-                <mat-label>Fixative</mat-label>
-                <input  #fixative="ngModel" [(ngModel)]="sD.fixative" [disabled]="isPddReadOnly"  matInput name="fixative"  required type="text">
+                <mat-label>Specimen</mat-label>
+                <input  #sex="ngModel" [(ngModel)]="sample.specimen" [disabled]="isPddReadOnly"  matInput name="specimen"  required type="text">
               </mat-form-field>
             </td>
           </tr>
-          <tr>
-            <td colspan="2">
-              <mat-form-field appearance="outline" class="single">
-                <mat-label>Report</mat-label>
-                <input  #bReport="ngModel" [(ngModel)]="sD.remarks" [disabled]="isPddReadOnly"  matInput name="Report" placeholder="Report" required type="text">
-              </mat-form-field>
-            </td>
-        </tr>
-                   
           
+          <tr>
+              <td colspan="2">
+                <mat-form-field appearance="outline" class="single">
+                  <mat-label>Block Report</mat-label>
+                  <input #sReport="ngModel" [(ngModel)]="bD.remarks" [disabled]="isPddReadOnly" matInput name="sReport" placeholder="Block Report" required type="text">
+                </mat-form-field>
+              </td>
+          </tr>
         </table>
       </div>
       <div #hiddenForm  [hidden]="(newForm)">
           <div><h3>Final Report</h3></div>
           <table class="single">
-          <tr>
-            <td>
-              <mat-form-field appearance="outline" class="single">
-                <mat-label>Observations</mat-label>
-                <input #npNumber="ngModel" [(ngModel)]="sD.remarks" matInput name="obsrvtns"  required type="text" matInput name="observtns"  required type="text">
-              </mat-form-field>
-            </td> 
-             
-            <td align="center">
-              <button  class="submit" type="submit" (click)="saveObs()" color="primary" mat-raised-button>SAVE</button>
-            </td>
-          </tr>
+            <tr>
+              <td>
+                <mat-form-field appearance="outline" class="single">
+                  <mat-label>Observations</mat-label>
+                  <input #npNumber="ngModel" [(ngModel)]="bD.remarks" matInput name="obsrvtns"  required type="text" matInput name="remarks"  required type="text">
+                </mat-form-field>
+              </td> 
+               
+              <td align="center">
+                <button  class="submit" type="submit" (click)="saveObs()" color="primary" mat-raised-button>SAVE</button>
+              </td>
+            </tr>
         </table>
         </div>
       </form>

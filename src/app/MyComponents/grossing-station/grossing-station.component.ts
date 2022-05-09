@@ -123,6 +123,6 @@ export class GrossingStationComponent implements OnInit {
     this.router.navigateByUrl('/pendingSamples');
   }
   logout(){
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('')
   }
 }

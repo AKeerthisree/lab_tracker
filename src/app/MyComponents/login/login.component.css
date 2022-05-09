@@ -20,4 +20,85 @@
   input.example-right-align {
     -moz-appearance: textfield;
   }
+  .main-div mat-card{
+    padding: 0px;
+}
+.login-form{
+    padding: 20px;
+}
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+}
+.example-right-align {
+  text-align: right;
+}
+  
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+  
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+  
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.imgdiv{      
+  height: auto;
+  width: auto;
+}
+.img1{      
+  height: 100%;      
+  width: 100%;
+  position: fixed;
+  object-fit:fill;   
+  filter: blur(6px);
+-webkit-filter: blur(6px);   
+  
+  overflow: hidden;  
+} 
+
+.topleft  span{
+	color: #fed136;
+	font-size:25px;font-weight:700;letter-spacing:0.1em;
+    font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
+    top:10%;
+    left : 10%;
+   
+}
+
+ 
+.topleft {
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  font-size: 18px;
+  color: black;
+	font-size:25px;
+    font-family: 'Kaushan Script','Helvetica Neue',Helvetica,Arial,cursive;
+	font-weight:700;
+	letter-spacing:0.1em;
+}
+
+.topmiddle{
+  font-family: "Lucida Console", Monaco, monospace;
+  position: absolute;
+  top: 10px;
+  left: 30%;
+  font-size: 40px;
+  color: rgb(88, 58, 79);
+   
+	font-weight:700;
+	letter-spacing:0.1em;
+
+}
   

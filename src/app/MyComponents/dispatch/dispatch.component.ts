@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { EmailDetails } from '../details/EmailDetails';
 import {MatDialog, MatDialogRef,MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { sampleDetails } from '../details/sampleDetails';
+import { blockDetails } from '../details/blockDetails';
 
 export interface DialogData {
   title:string;
@@ -24,19 +25,18 @@ export class DispatchComponent implements OnInit {
   newForm=true;
   isPddReadOnly="true";
   sampleForm=true;
-  sample;
+  sample:sampleDetails=new sampleDetails();
   obsrvtns;
   message;
   blkDetails;
   sampleDetails;
-  sD:sampleDetails=new sampleDetails();
+  bD:blockDetails=new blockDetails();
   emailDetails:EmailDetails=new EmailDetails();
-  sampleID;
+  blockID;
   constructor(  
     private dispatchService: DispatchService,
     private router  : Router,
     public dialog: MatDialog) { 
-     // this.pdd=new patientDetails("","","",0,"","",false);
       
     }
   messageReport;
@@ -46,79 +46,121 @@ export class DispatchComponent implements OnInit {
   autofill(){
     this.sampleForm=true;
     this.newForm=false;
-    
-   // this.sA=[];
-   // this.fillForm();
-    console.log(this.sD);
-    this.dispatchService.getPatient_sampleID(this.sampleID).subscribe((data)=>{
-      console.log(data);
-      this.pdd=data
-     });
-
-    this.dispatchService.getOneSample(this.sampleID).subscribe(
-      (data)=>{
-        console.log(data);
-        this.sD=data;
-      },
-      ()=>{
-
-      }
-    )
-  }
-  saveObs(){
-    console.log(this.obsrvtns);
-    
   
-    // //updating report
-    // let resp=this.dispatchService.updateReport(this.pdd);
-    //   resp.subscribe((data)=>{
-    //     console.log(data);
-    //     this.messageReport=data
-    //    });
-    //updating station of block
-    this.dispatchService.getBlkDetailsOfSample(this.sampleID).subscribe(
-      (data)=>{
-        console.log(data);
-        this.blkDetails=data;
-        console.log(this.blkDetails.length);
-        for(let i=0;i<this.blkDetails.length;i++){
-          this.blkDetails[i].lastUpdatedStation=5;
-          let resp=this.dispatchService.updateBlock(this.blkDetails[i]);
-          resp.subscribe((data)=>{
-            console.log(data);
-            this.message=data});
-        }
-      }
-    );
-    //updating sample station
-    // this.dispatchService.getSampleDetailsOfPatient(this.patientId).subscribe(
+    console.log(this.bD);
+    // this.dispatchService.getPatient_sampleID(this.sampleID).subscribe((data)=>{
+    //   console.log(data);
+    //   this.pdd=data
+    //  });
+
+    // this.dispatchService.getOneSample(this.sampleID).subscribe(
     //   (data)=>{
     //     console.log(data);
-    //     this.sampleDetails=data;
-    //     console.log(this.sampleDetails.length);
-    //     for(let i=0;i<this.blkDetails.length;i++){
-    //       this.blkDetails[i].last_updated_station=5;
-    //       let resp=this.dispatchService.updateBlock(this.blkDetails[i]);
-    //       resp.subscribe((data)=>{
-    //         console.log(data);
-    //         this.message=data});
-      
-    //     }
-    // });  
+    //     this.sD=data;
+    //   },
+    //   ()=>{
 
-    this.sD.lastUpdatedStation=5;
-    this.dispatchService.updateSample(this.sD).subscribe(
+    //   }
+    // )
+    this.dispatchService.getBlockByID(this.blockID).subscribe(
       (data)=>{
-        console.log(this.sD);
+        console.log(data);
+        this.bD=data;
+        this.sample=this.bD.sd;
+      console.log(this.sample);
+      this.dispatchService.getPatient_sampleID(this.bD.sd.sample_id).subscribe((data)=>{
+        console.log(data);
+        this.pdd=data
+       });
+      
+      },
+      (err)=>{
+        console.log("Error");
       }
     )
+    
+  }
+  // saveObs(){
+  //   console.log(this.obsrvtns);
+    
+  
+  //   // //updating report
+  //   // let resp=this.dispatchService.updateReport(this.pdd);
+  //   //   resp.subscribe((data)=>{
+  //   //     console.log(data);
+  //   //     this.messageReport=data
+  //   //    });
+  //   //updating station of block
+  //   this.dispatchService.getBlkDetailsOfSample(this.sampleID).subscribe(
+  //     (data)=>{
+  //       console.log(data);
+  //       this.blkDetails=data;
+  //       console.log(this.blkDetails.length);
+  //       for(let i=0;i<this.blkDetails.length;i++){
+  //         this.blkDetails[i].lastUpdatedStation=5;
+  //         let resp=this.dispatchService.updateBlock(this.blkDetails[i]);
+  //         resp.subscribe((data)=>{
+  //           console.log(data);
+  //           this.message=data});
+  //       }
+  //     }
+  //   );
+  //   //updating sample station
+  //   // this.dispatchService.getSampleDetailsOfPatient(this.patientId).subscribe(
+  //   //   (data)=>{
+  //   //     console.log(data);
+  //   //     this.sampleDetails=data;
+  //   //     console.log(this.sampleDetails.length);
+  //   //     for(let i=0;i<this.blkDetails.length;i++){
+  //   //       this.blkDetails[i].last_updated_station=5;
+  //   //       let resp=this.dispatchService.updateBlock(this.blkDetails[i]);
+  //   //       resp.subscribe((data)=>{
+  //   //         console.log(data);
+  //   //         this.message=data});
+      
+  //   //     }
+  //   // });  
+
+  //   this.sD.lastUpdatedStation=5;
+  //   this.dispatchService.updateSample(this.sD).subscribe(
+  //     (data)=>{
+  //       console.log(this.sD);
+  //     }
+  //   )
 
 
-    //sending email
+  //   //sending email
 
+  //   this.emailDetails.to=this.pdd.email;
+  //   this.emailDetails.subject="Lab Report";
+  //   this.emailDetails.message=this.sD.remarks;
+  //   let resp=this.dispatchService.sendEmail(this.emailDetails);
+  //     resp.subscribe((data)=>{
+  //       console.log(data);
+  //      });
+
+  //   if(resp)
+  //     this.openDialog(true);
+  //   else
+  //     this.openDialog(false);
+  
+    
+  // }
+
+  saveObs(){
+    this.bD.last_updated_station=5;
+    this.dispatchService.updateBlock(this.bD).subscribe(
+      (data)=>{
+        console.log(data)
+      },
+      (err)=>{
+        console.log("Error");
+      }
+
+    )
     this.emailDetails.to=this.pdd.email;
     this.emailDetails.subject="Lab Report";
-    this.emailDetails.message=this.sD.remarks;
+    this.emailDetails.message=this.bD.remarks;
     let resp=this.dispatchService.sendEmail(this.emailDetails);
       resp.subscribe((data)=>{
         console.log(data);
@@ -128,10 +170,8 @@ export class DispatchComponent implements OnInit {
       this.openDialog(true);
     else
       this.openDialog(false);
-  
-    
-  }
 
+  }
   pendingPatients(){
     this.router.navigateByUrl('/pendingDispatchPatients');
   }
@@ -153,7 +193,7 @@ export class DispatchComponent implements OnInit {
   
 
   logout(){
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('')
   }
 
 }
@@ -169,6 +209,7 @@ export class DialogElementsExampleDialog {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
   
 }
@@ -184,5 +225,6 @@ export class DialogUnsuccess {
   ){}
   close(){
     this.dialogRef.close();
+    window.location.reload();
   }
 }

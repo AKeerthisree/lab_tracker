@@ -1,0 +1,39 @@
+<div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+        <mat-toolbar color="primary">ENTER EMPLOYEE DETAILS</mat-toolbar>
+        
+                <form [formGroup]="empDetail">
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">ID </label>
+                        <input type="text" formControlName="id" class="form-control" id="id"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Name </label>
+                        <input type="text" formControlName="name" class="form-control" id="name"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email </label>
+                        <input type="email" formControlName="email" class="form-control" id="email"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">phone</label>
+                        <input type="text" formControlName="phone" class="form-control" id="phone"
+                            aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">role</label>
+                        <input type="text" formControlName="role" class="form-control" id="role"
+                            aria-describeddescribedby="emailHelp">
+                    </div>
+                    <div class="modal-footer">
+                        <!-- <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button> -->
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                            (click)="addEmployee()">Add employee</button>
+                    </div>
+                </form>
+
+            </mat-card>
+</div>
